@@ -1,6 +1,7 @@
 # Analisis Perilaku Pelanggan & Rekomendasi Produk Amazon
 
 Ini adalah proyek untuk mata kuliah **Big Data dan Visualisasi**  dengan Dosen pengjar **Dr. TUKIYAT M.Si**  , yang bertujuan untuk menganalisis dataset penjualan Amazon, mengidentifikasi pola perilaku pelanggan, dan membangun aplikasi web interaktif untuk menampilkan wawasan dan rekomendasi produk.
+![Image](https://github.com/user-attachments/assets/ee1ea10c-5a35-48f4-b5cf-93d690b6da14)
 
 ## 📜 Deskripsi Proyek
 
