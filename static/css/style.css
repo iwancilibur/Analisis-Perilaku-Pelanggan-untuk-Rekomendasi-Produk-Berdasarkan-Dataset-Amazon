@@ -1,0 +1,200 @@
+/* Modern Blue & Purple Theme */
+      :root {
+        --primary-blue: #4361ee;
+        --secondary-blue: #3a0ca3;
+        --accent-purple: #7209b7;
+        --light-purple: #b5179e;
+        --dark-bg: #1a1a2e;
+        --light-bg: #f8f9fa;
+        --text-dark: #212529;
+        --text-light: #f8f9fa;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: var(--text-light);
+        padding: 3rem 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      header p {
+        margin: 0.5rem 0 0;
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(67, 97, 238, 0.1);
+        margin-bottom: 40px;
+        padding: 30px;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(67, 97, 238, 0.15);
+      }
+
+      .card h2 {
+        color: var(--secondary-blue);
+        border-bottom: 3px solid var(--accent-purple);
+        padding-bottom: 12px;
+        margin-top: 0;
+        font-size: 1.8rem;
+      }
+
+      .plot-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .plot {
+        flex: 1 1 400px;
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      }
+
+      .plot img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 15px 20px;
+        text-align: left;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+
+      thead {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: white;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: rgba(67, 97, 238, 0.03);
+      }
+
+      tbody tr:hover {
+        background-color: rgba(67, 97, 238, 0.08);
+      }
+
+      .rating {
+        color: #ffb703;
+        font-weight: 600;
+      }
+
+      .price {
+        font-weight: 600;
+        color: var(--accent-purple);
+      }
+
+      .btn {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 60px;
+        background: var(--dark-bg);
+        color: var(--text-light);
+      }
+
+      .team-members {
+        margin-top: 20px;
+      }
+
+      .team-members h3 {
+        color: var(--light-purple);
+        margin-bottom: 10px;
+      }
+
+      .team-members ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .team-members li {
+        background: rgba(255,255,255,0.1);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .card {
+          padding: 20px;
+        }
+        th, td {
+          padding: 12px 15px;
+        }
+      }

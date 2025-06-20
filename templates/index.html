@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analisis & Rekomendasi Produk Amazon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      /* Modern Blue & Purple Theme */
+      :root {
+        --primary-blue: #4361ee;
+        --secondary-blue: #3a0ca3;
+        --accent-purple: #7209b7;
+        --light-purple: #b5179e;
+        --dark-bg: #1a1a2e;
+        --light-bg: #f8f9fa;
+        --text-dark: #212529;
+        --text-light: #f8f9fa;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: var(--text-light);
+        padding: 3rem 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 2.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      header p {
+        margin: 0.5rem 0 0;
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(67, 97, 238, 0.1);
+        margin-bottom: 40px;
+        padding: 30px;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(67, 97, 238, 0.15);
+      }
+
+      .card h2 {
+        color: var(--secondary-blue);
+        border-bottom: 3px solid var(--accent-purple);
+        padding-bottom: 12px;
+        margin-top: 0;
+        font-size: 1.8rem;
+      }
+
+      .plot-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .plot {
+        flex: 1 1 400px;
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      }
+
+      .plot img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 15px 20px;
+        text-align: left;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+
+      thead {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: white;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: rgba(67, 97, 238, 0.03);
+      }
+
+      tbody tr:hover {
+        background-color: rgba(67, 97, 238, 0.08);
+      }
+
+      .rating {
+        color: #ffb703;
+        font-weight: 600;
+      }
+
+      .price {
+        font-weight: 600;
+        color: var(--accent-purple);
+      }
+
+      .btn {
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 60px;
+        background: var(--dark-bg);
+        color: var(--text-light);
+      }
+
+      .team-members {
+        margin-top: 20px;
+      }
+
+      .team-members h3 {
+        color: var(--light-purple);
+        margin-bottom: 10px;
+      }
+
+      .team-members ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .team-members li {
+        background: rgba(255,255,255,0.1);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .card {
+          padding: 20px;
+        }
+        th, td {
+          padding: 12px 15px;
+        }
+      }
+      </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Analisis Perilaku Pelanggan & Rekomendasi Produk</h1>
+            <p>Proyek Big Data & Visualisasi | Berdasarkan Dataset Amazon</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Analisis Visual</h2>
+            <div class="plot-container">
+                <div class="plot">
+                    <h3>Top 10 Kategori Produk</h3>
+                    <img src="{{ url_for('static', filename=top_categories_plot) }}" alt="Grafik Top Kategori Produk">
+                </div>
+                <div class="plot">
+                    <h3>Distribusi Rating Produk</h3>
+                    <img src="{{ url_for('static', filename=rating_dist_plot) }}" alt="Grafik Distribusi Rating">
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Rekomendasi Produk Terpopuler Untuk Anda</h2>
+            <p>Berikut adalah 10 produk yang paling populer berdasarkan rating tertinggi dan jumlah ulasan terbanyak.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Produk</th>
+                            <th>Kategori</th>
+                            <th>Rating</th>
+                            <th>Jumlah Ulasan</th>
+                            <th>Harga Diskon</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in recommendations %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ product.product_name }}</td>
+                            <td>{{ product.main_category }}</td>
+                            <td class="rating">⭐ {{ product.rating }}</td>
+                            <td>{{ product.rating_count | int }}</td>
+                            <td class="price">₹{{ "%.2f"|format(product.discounted_price) }}</td>
+                            <td><a href="{{ product.product_link }}" target="_blank" class="btn">Lihat Produk</a></td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="7">Tidak ada rekomendasi yang bisa ditampilkan.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Tugas Kelompok 2 Big Data & Visualisasi - {{ current_year }}</p>
+            <div class="team-members">
+                <h3>Anggota Kelompok:</h3>
+                <ul>
+                    <li>Iwan Muttaqin</li>
+                    <li>Nova Dwi Putra Wibowo</li>
+                    <li>Bayu Nurcahyono</li>
+                    <li>Rian Ardiansah</li>
+                    <li>Nama Anggota 5</li>
+                    <li>Nama Anggota 6</li>
+                    <li>Nama Anggota 7</li>
+                    <li>Nama Anggota 8</li>
+                    <li>Nama Anggota 9</li>
+                    <li>Nama Anggota 10</li>
+                    <li>Nama Anggota 11</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
