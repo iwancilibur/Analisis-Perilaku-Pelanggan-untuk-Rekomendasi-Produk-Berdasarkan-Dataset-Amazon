@@ -122,11 +122,12 @@ Buka URL `http://127.0.0.1:5000` di browser Anda untuk melihat hasilnya.
 
 Proyek ini disusun oleh:
 
-  - [Nama Anggota 1]
-  - [Nama Anggota 2]
-  - [Nama Anggota 3]
+  - Iwan Muttaqin
+  - Nova Dwi Putra Wibowo
+  - Bayu Nurcahyono
+  - Rian Ardiansah
   - [dst.]
 
 ## 📄 Lisensi
 
-Proyek ini Open Source Silahkan anda Kembangkan sesuai  dengan keinginan anda
+Proyek ini Open Source yang dibuat dengan Cinta wxwxwx, Silahkan anda Kembangkan sesuai  dengan keinginan anda
